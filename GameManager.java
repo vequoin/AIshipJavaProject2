@@ -16,6 +16,7 @@ public class GameManager {
     private double[][] knowledgeGrid;
     private Random random = new Random();
     private List<Cell> Probability_list;
+    private int numOpenCells = ship.getOpenCells().size();
 
     public GameManager(int shipSize, int botStrategy, int k) {
         this.ship = new Ship(shipSize);
@@ -36,7 +37,8 @@ public class GameManager {
     private void initializeKnowledgeGrid() {
         for (int i = 0; i < shipSize; i++) {
             for (int j = 0; j < shipSize; j++) {
-                knowledgeGrid[i][j] = 1/(ship.getOpenCells());
+                
+                knowledgeGrid[i][j] = 1/(numOpenCells);
             }
         }
     }
