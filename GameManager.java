@@ -15,6 +15,7 @@ public class GameManager {
     private Set<Cell> visitedNodes;
     private String[][] knowledgeGrid;
     private Random random = new Random();
+    private List<Cell> Probability_list;
 
     public GameManager(int shipSize, int botStrategy, int k) {
         this.ship = new Ship(shipSize);
