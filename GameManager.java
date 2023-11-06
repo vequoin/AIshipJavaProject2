@@ -8,12 +8,12 @@ public class GameManager {
     private int shipSize;
     private int k;
     private Cell botPosition;
-    private List<Cell> leaks;
+    private Cell leakPosition;
     private List<Cell> coveredGrid;
     private int botStrategy;
     private Bot bot;
     private Set<Cell> visitedNodes;
-    private String[][] knowledgeGrid;
+    private double[][] knowledgeGrid;
     private Random random = new Random();
     private List<Cell> Probability_list;
 
@@ -22,7 +22,8 @@ public class GameManager {
         this.shipSize = shipSize;
         this.k = k;
         this.botPosition = getRandomOpenCell(ship.getOpenCells());
-        this.leaks = new ArrayList<>();
+        this.leakPosition = getRandomOpenCell(ship.getOpenCells());
+        
         this.coveredGrid = new ArrayList<>();
         this.botStrategy = botStrategy;
         this.bot = new Bot(ship, botStrategy, botPosition, k);
@@ -35,7 +36,7 @@ public class GameManager {
     private void initializeKnowledgeGrid() {
         for (int i = 0; i < shipSize; i++) {
             for (int j = 0; j < shipSize; j++) {
-                knowledgeGrid[i][j] = ship.getStructure()[i][j] == 1 ? "#" : "UNKNOWN";
+                knowledgeGrid[i][j] = 1/(ship.getOpenCells());
             }
         }
     }
