@@ -10,18 +10,18 @@ public class Ship {
     private int[][] ship;
     private List<Cell> leaks;
     private List<Cell> openCells;
-
+    
     private static final Random random = new Random();
 
-    private class Cell {
+    /*class Cell {
         int x, y;
 
         public Cell(int x, int y) {
             this.x = x;
             this.y = y;
         }
-    }
-
+    }*/
+    private Cell cell;
     public Ship(int D) {
         this.name = "Archaeopteryx";
         this.D = D;
@@ -32,7 +32,7 @@ public class Ship {
 
     private int[][] generateShip() {
         int[][] ship = new int[this.D][this.D];
-
+        
         Cell startCell = new Cell(random.nextInt(this.D), random.nextInt(this.D));
         ship[startCell.x][startCell.y] = 0;
 
@@ -64,6 +64,7 @@ public class Ship {
     }
 
     private void eliminateDeadEnds(int[][] ship) {
+        int requiredLength = 0;
         List<Cell> deadEnds;
         do {
             deadEnds = new ArrayList<>();
@@ -79,7 +80,7 @@ public class Ship {
                 }
             }
 
-            int requiredLength = deadEnds.size() / 2;
+            requiredLength = deadEnds.size() / 2;
 
             while (requiredLength < deadEnds.size()) {
                 Cell randomDeadEnd = deadEnds.get(random.nextInt(deadEnds.size()));
@@ -97,7 +98,7 @@ public class Ship {
         } while (requiredLength < deadEnds.size());
     }
 
-    private List<Cell> getOpenCells() {
+    List<Cell> getOpenCells() {
         List<Cell> openCells = new ArrayList<>();
         for (int i = 0; i < this.D; i++) {
             for (int j = 0; j < this.D; j++) {
@@ -108,7 +109,7 @@ public class Ship {
         }
         return openCells;
     }
-
+    
     private List<Cell> getNeighbors(Cell cell) {
         List<Cell> neighbors = new ArrayList<>();
         int[] directions = new int[]{-1, 0, 1, 0, -1}; // used for finding neighbors in a grid
@@ -136,3 +137,5 @@ public class Ship {
             gridStr.append("\n");
         }
         return gridStr.toString();
+    }
+}
