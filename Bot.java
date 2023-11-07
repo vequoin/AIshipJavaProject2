@@ -22,9 +22,9 @@ public class Bot {
         this.position = newPosition;
     }
 
-    public List<Cell> getPossibleMoves() {
-        return this.ship.getOpenNeighbors(this.position);
-    }
+    //public List<Cell> getPossibleMoves() {
+      //  return this.ship.getOpenNeighbors(this.position);
+    //}
 
     public void sense() {
         List<Cell> detectionGrid = generateSenseGrid();
@@ -60,7 +60,7 @@ public class Bot {
     // Additional methods such as getters, setters, and toString may be required
 
     // Cell class for representing position. Assuming this is a static nested class inside Ship
-    public static class Cell {
+    /*public static class Cell {
         int x, y;
 
         public Cell(int x, int y) {
@@ -83,5 +83,5 @@ public class Bot {
             result = 31 * result + Integer.hashCode(y);
             return result;
         }
-    }
+    }*/
 }
